@@ -23,8 +23,7 @@ jobs:
         npm i playwright-core
         npm run e2e:env
 
-    # - name: Upload test results
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: test-results
-    #     path: tests/reports/results.xml
+    - name: Display test results
+      uses: github.actions/upload-test-results@v1
+      with:
+        testResults: tests/results
