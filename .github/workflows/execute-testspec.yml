@@ -23,10 +23,6 @@ jobs:
         npm i playwright-core
         npm run e2e:env
 
-    - name: Generate test report
-      run: |
-        npm run generate-report
-
     - name: Upload test report
       uses: marvinpinto/action-automatic-releases@latest
       with:
