@@ -28,7 +28,7 @@ jobs:
         npm run generate-report
 
     - name: Upload test report
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2.2.4
       with:
         name: test-report
         path: tests/reports/detailed-report.html
