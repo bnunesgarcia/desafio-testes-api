@@ -8,8 +8,7 @@ export default defineConfig({
   workers: 1,
   reporter: 'html',
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: '',
+    headless: true,
     trace: 'on-first-retry',
   },
 });
