@@ -23,9 +23,9 @@ jobs:
         npm i playwright-core
         npm run e2e:env
 
-    - name: Upload test report
-      uses: marvinpinto/action-automatic-releases@latest
-      with:
-        artifacts: tests/reports/detailed-report.html
-        token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Upload test report
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: test-report
+    #     path: tests/reports/detailed-report.html
 
