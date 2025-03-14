@@ -1,0 +1,30 @@
+name: Execute Testspec
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install dependencies and run tests
+      run: |
+        cd tests/
+        npm config set strict-ssl false
+        npm install
+        npm i playwright-core
+        npm run e2e:env
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: tests/reports/results.xml
