@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-version:
+      nodejs: 20
+
+      build:
+        commands:
+          - cd tests/
+          - npm config set strict-ssl false
+          - npm install
+          - npm i playwright-core
+          - npm run e2e:env
+
+artifacts:
+  files:
+    - "results.xml"
+
+  base-directory: tests/reports
+
+  file-format: JunitXml

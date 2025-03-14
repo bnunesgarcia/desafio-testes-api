@@ -1,0 +1,20 @@
+{
+  "name": "testes-api-star-wars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "e2e:env": "npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.10"
+  },
+  "dependencies": {
+    "crypto-browserify": "^3.12.1",
+    "testes-api-star-wars": "file:"
+  }
+}
