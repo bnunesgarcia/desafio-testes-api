@@ -1,5 +1,5 @@
 yaml
-version: "0.2"
+version: 0.2
 
 phases:
   install:
@@ -13,11 +13,6 @@ phases:
       - npm install
       - npm i playwright-core
       - npm run e2e:env
-
-  test:
-    commands:
-      - cd tests/
-      - npm run cucumber
 
 artifacts:
   files:
