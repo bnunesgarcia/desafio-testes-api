@@ -23,11 +23,6 @@ jobs:
         npm i playwright-core
         npm run e2e:env
 
-    - name: Generate test report
-      run: |
-        cd tests/
-        npm run generate-report
-
     - name: Upload test report
       uses: actions/upload-artifact@v4
       with:
