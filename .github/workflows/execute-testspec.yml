@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install dependencies and run tests
+    - name: Install dependencies
       run: |
         cd tests/
         npm config set strict-ssl false
