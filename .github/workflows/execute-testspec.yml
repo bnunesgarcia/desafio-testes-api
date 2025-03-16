@@ -25,7 +25,7 @@ jobs:
     - name: Run tests
       run: |
         cd tests/
-        npx playwright test --reporter=html
+        npm run e2e:env
 
     - name: Upload test report
       uses: actions/upload-artifact@v4
