@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e:env": "npx playwright test",
-    "generate-report": "playwright show-report --output=tests/reports/detailed-report.html"
+    "e2e:env": "playwright test --reporter=html"
   },
   "keywords": [],
   "author": "",
