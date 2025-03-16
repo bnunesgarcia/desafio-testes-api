@@ -21,12 +21,11 @@ jobs:
         npm config set strict-ssl false
         npm install
         npm i playwright-core
-        npm run e2e:env
-            
-    - name: Generate test report
+
+    - name: Run tests
       run: |
         cd tests/
-        npm run generate-report
+        npx playwright test --reporter=html
 
     - name: Upload test report
       uses: actions/upload-artifact@v4
