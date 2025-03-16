@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e:env": "playwright test --reporter=html"
+    "e2e:env": "playwright test"
   },
   "keywords": [],
   "author": "",
