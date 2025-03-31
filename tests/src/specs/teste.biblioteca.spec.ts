@@ -57,7 +57,7 @@ test('Reservar livro na biblioteca', async({request}) => {
     await test.step(`Realiza requisicao POST para reserva de livro`, async() => {
         response = await request.post(baseUrl + 'orders', {
             headers: {
-                "authorization": "Bearer 5946d45807353ae460ab2c99ed09ccf8ee07e2822d908d65f5bc305acbe7d048"
+                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
             },
             data: {
                 "bookId": 1,
@@ -80,7 +80,7 @@ test('Reservar livro na biblioteca', async({request}) => {
     await test.step(`Reservar livro inexistente`, async() => {
         response = await request.post(baseUrl + 'orders', {
             headers: {
-                "authorization": "Bearer 5946d45807353ae460ab2c99ed09ccf8ee07e2822d908d65f5bc305acbe7d048"
+                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
             },
             data: {
                 "bookId": 24,
@@ -101,7 +101,7 @@ test('Alterar dados da reserva', async({request}) => {
     await test.step(`Realiza requisicao PATCH para alterar dados da ordem`, async() => {
         response = await request.patch(baseUrl + `orders/` + orderId, {
             headers: {
-                "authorization": "Bearer 5946d45807353ae460ab2c99ed09ccf8ee07e2822d908d65f5bc305acbe7d048"
+                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
             },
             data: {
                 "customerName": "teste alteracao"
@@ -124,7 +124,7 @@ test('Remover reserva', async({request}) => {
     await test.step(`Realiza requisicao DELETE para deletar ordem de reserva`, async() => {
         response = await request.delete(baseUrl + `orders/` + orderId, {
             headers: {
-                "authorization": "Bearer 5946d45807353ae460ab2c99ed09ccf8ee07e2822d908d65f5bc305acbe7d048"
+                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
             }
         })
     })
