@@ -68,7 +68,7 @@ artifacts:
 ```
 **Execução dos Testes**
 
-Para executar os testes, basta executar o comando `npm run e2e` no diretório `tests`. Isso irá executar os testes e gerar um relatório em formato JUnit XML no diretório `tests/reports`.
+Para executar os testes, basta executar o comando `npm run e2e:env` no diretório `tests`. Isso irá executar os testes e gerar um relatório em formato JUnit XML no diretório `tests/reports`.
 
 **Relatórios**
 
