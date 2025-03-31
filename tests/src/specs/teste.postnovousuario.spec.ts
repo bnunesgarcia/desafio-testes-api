@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { geraLogin } from '../utils/utils' 
 
 let response: any;
+let dados;
 const dadosNovoUsuario = require('../data/dadosNovoUsuario.json')
 const baseUrl = 'https://demoqa.com/Account/v1/User'
 
@@ -19,7 +20,7 @@ const baseUrl = 'https://demoqa.com/Account/v1/User'
     })
 
     if (response.ok()){
-      const dados = await response.json();
+      dados = await response.json();
       console.log('UserID: ' + dados.userID);
       console.log('Nome Usuario: ' + dados.username);
     } else {
@@ -27,6 +28,7 @@ const baseUrl = 'https://demoqa.com/Account/v1/User'
     }
 
     expect(response.ok()).toBeTruthy();
+    expect(dados.username).toBe(dadosNovoUsuario.userName);
 
   })
 

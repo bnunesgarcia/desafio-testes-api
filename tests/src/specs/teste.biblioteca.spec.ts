@@ -1,9 +1,38 @@
 import { expect, test } from '@playwright/test';
-import { geraLogin } from '../utils/utils';
+import { generateRandomEmail, geraLogin } from '../utils/utils';
 
 let response: any;
 let orderId: any;
+let token;
 const baseUrl = 'https://simple-books-api.glitch.me/'
+
+const randomEmail = generateRandomEmail();
+
+test.beforeAll(async({request}) => {
+        response = await request.post(baseUrl + 'api-clients/', {
+            headers:{
+                "Cache-Control": "no-cache",
+                "content-type": "application/json",
+                "User-Agent": "PostmanRuntime/7.43.0",
+                "Accept": "*/*",
+                "Connection": "keep-alive"
+            },
+            data: {
+                "clientName": "Teste",
+                "clientEmail": randomEmail
+             }
+        })
+
+        if (response.ok()){
+            const responseData = await response.json();
+            token = responseData.accessToken;
+        } else {
+            console.error(`Teste falhou: ${response.status()} ${response.statusText()}`);
+        }
+
+        expect(response.ok()).toBeTruthy();
+
+})
 
 test('Status da Biblioteca', async({request}) => {
     await test.step(`Realiza requisicao GET no status da biblioteca`, async() => {
@@ -45,6 +74,14 @@ test('Livros da Biblioteca', async({request}) => {
     if (response.ok()){
         const listaLivros = await response.json();
         console.log(listaLivros);
+        const nomeLivroProcurado = 'The Russian';
+        const livro = listaLivros.find((livro: { name: string; }) => livro.name === nomeLivroProcurado);
+
+        if (livro) {
+            console.log(`Livro encontrado: ID = ${livro.id}, Nome = ${livro.name}, Tipo = ${livro.type}, Disponível = ${livro.available}`);
+        } else {
+            console.error(`Livro com nome "${nomeLivroProcurado}" não encontrado.`);
+        }
     } else {
         console.error(`Teste falhou: ${response.status()} ${response.statusText()}`);
     }
@@ -57,7 +94,7 @@ test('Reservar livro na biblioteca', async({request}) => {
     await test.step(`Realiza requisicao POST para reserva de livro`, async() => {
         response = await request.post(baseUrl + 'orders', {
             headers: {
-                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
+                "authorization": "Bearer " + token
             },
             data: {
                 "bookId": 1,
@@ -80,7 +117,7 @@ test('Reservar livro na biblioteca', async({request}) => {
     await test.step(`Reservar livro inexistente`, async() => {
         response = await request.post(baseUrl + 'orders', {
             headers: {
-                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
+                "authorization": "Bearer " + token
             },
             data: {
                 "bookId": 24,
@@ -101,7 +138,7 @@ test('Alterar dados da reserva', async({request}) => {
     await test.step(`Realiza requisicao PATCH para alterar dados da ordem`, async() => {
         response = await request.patch(baseUrl + `orders/` + orderId, {
             headers: {
-                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
+                "authorization": "Bearer " + token
             },
             data: {
                 "customerName": "teste alteracao"
@@ -124,7 +161,7 @@ test('Remover reserva', async({request}) => {
     await test.step(`Realiza requisicao DELETE para deletar ordem de reserva`, async() => {
         response = await request.delete(baseUrl + `orders/` + orderId, {
             headers: {
-                "authorization": "Bearer 2ae08c2cb14924b1f210318ae3ba9b5fa2b205db02968ad5c4ec70fa16170c92"
+                "authorization": "Bearer " + token
             }
         })
     })
